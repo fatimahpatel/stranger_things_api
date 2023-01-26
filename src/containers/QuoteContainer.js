@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 import About from '../components/About';
+import Contact from '../components/Contact';
 import Quote from '../components/Quote';
 import QuoteList from '../components/QuoteList';
 
@@ -25,7 +26,7 @@ const QuoteContainer = () =>{
                 <ul>
                     <li><Link to ="/">Home</Link></li>
                     <li><Link to = "/about">About</Link></li>
-                    <li><Link to ="/contacts">Contacts</Link></li>
+                    <li><Link to ="/contact">Contact</Link></li>
                 </ul>
 
                 <button>
@@ -36,7 +37,7 @@ const QuoteContainer = () =>{
 
             <Routes>
                 <Route path = "/about" element = {<About/>}/>
-                <Route></Route>
+                <Route path = "/contact" element = {<Contact/>}/>
             </Routes>   
         
         </BrowserRouter>    
