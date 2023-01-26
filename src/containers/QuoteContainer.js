@@ -18,7 +18,6 @@ const QuoteContainer = () =>{
         }
         fetchData()
     }, [])
-
  
     return(
         <BrowserRouter>
@@ -36,8 +35,18 @@ const QuoteContainer = () =>{
 
 
             <Routes>
-                <Route path = "/about" element = {<About/>}/>
-                <Route path = "/contact" element = {<Contact/>}/>
+                <Route path = "/about" element = 
+                {<About/>}
+                />
+
+                <Route path = "/contact" element=
+                {<Contact/>}
+                />
+
+                <Route path = "/quotes" element = 
+                {<QuoteList
+                quotes = {quotesFromApi}/>}
+                />
             </Routes>   
         
         </BrowserRouter>    
