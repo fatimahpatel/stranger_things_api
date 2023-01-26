@@ -1,26 +1,22 @@
 import {useState, useEffect} from 'react'
 import Quote from '../components/Quote';
+import QuoteList from '../components/QuoteList';
 const QuoteContainer = () =>{
     //need to fetch from api and return quote
-
-    const [quotes, setQuotes] = useState([]);
+    const [quotesFromApi, setQuotesFromApi] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch("https://strangerthings-quotes.vercel.app/api/quotes");
+            const response = await fetch("https://strangerthings-quotes.vercel.app/api/quotes/5");
             const data = await response.json() ;
-            setQuotes(data);
-            console.log(setQuotes);
+            setQuotesFromApi(data);
+            console.log(setQuotesFromApi);
         }
         fetchData()
     }, [])
 
-    //using map to put all the quotes in one space 
-    const quotesCollection = quotes.map(quote =>{
-        return <Quote quote = {quote} />
-    });
-
+ 
     return(
-       quotes.length > 0 ? quotesCollection : <p>Loading quote</p>
+        <QuoteList quotes = {quotesFromApi}/>
     )
 }
 export default QuoteContainer;
