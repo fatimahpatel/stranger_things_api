@@ -6,7 +6,7 @@ const QuoteContainer = () =>{
     const [quotesFromApi, setQuotesFromApi] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch("https://strangerthings-quotes.vercel.app/api/quotes/5");
+            const response = await fetch("https://strangerthings-quotes.vercel.app/api/quotes/106");
             const data = await response.json() ;
             setQuotesFromApi(data);
             console.log(setQuotesFromApi);
