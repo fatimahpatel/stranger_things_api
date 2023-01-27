@@ -4,20 +4,32 @@ import About from '../components/About';
 import Contact from '../components/Contact';
 import Quote from '../components/Quote';
 import QuoteList from '../components/QuoteList';
-
+import QuoteForm from '../components/QuoteForm';
 
 const QuoteContainer = () =>{
     //need to fetch from api and return quote
     const [quotesFromApi, setQuotesFromApi] = useState([]);
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch("https://strangerthings-quotes.vercel.app/api/quotes/106");
             const data = await response.json() ;
             setQuotesFromApi(data);
-            console.log(setQuotesFromApi);
         }
-        fetchData()
+        fetchData();
     }, [])
+
+
+
+
+    const [filteredQuotes, setFilteredQuotes] = useState([]);
+        const getFilteredData = async (filteredNumber) => {
+            const response = await fetch(`https://strangerthings-quotes.vercel.app/api/quotes/${filteredNumber}`)
+            const data = await response.json();
+            setFilteredQuotes(data);
+            // console.log("hello");
+        }
+
  
     return(
         <BrowserRouter>
@@ -31,8 +43,10 @@ const QuoteContainer = () =>{
                 <button>
                     <Link to ="/quotes">Quotes</Link>
                 </button>
-
-
+                <button>
+                    <Link to ="/filtered-quotes">Filtered Quotes</Link>
+                </button>
+              
 
             <Routes>
                 <Route path = "/about" element = 
@@ -47,9 +61,25 @@ const QuoteContainer = () =>{
                 {<QuoteList
                 quotes = {quotesFromApi}/>}
                 />
+
+                <Route path = "/filtered-quotes" element = 
+                {<>
+                    <QuoteForm
+                    filterFunction={getFilteredData} />
+                    <QuoteList
+                    quotes = {filteredQuotes}/>
+                    
+                    
+                    
+                    </>
+                
+                }
+                />
+
+
             </Routes>   
         
-        </BrowserRouter>    
+        </BrowserRouter>   
     )
 }
 export default QuoteContainer;

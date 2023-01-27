@@ -2,9 +2,8 @@ const Quote = ({quote}) => {
 
     return(
         <div className = "allQuotes">
-            <h3> 
-            {quote.quote}
-            {quote.author} </h3> 
+            <p>"{quote.quote}" - {quote.author}</p> 
+            
         </div>
          
     )
